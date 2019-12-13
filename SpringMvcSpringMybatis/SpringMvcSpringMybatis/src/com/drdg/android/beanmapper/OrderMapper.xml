@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.drdg.android.dao.OrderDao" >
+	<resultMap id="BaseResultMap" type="com.drdg.android.bean.OrderBean" >
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<id column="foodname" property="foodname" jdbcType="VARCHAR"/>
+		<id column="menuid" property="menuid" jdbcType="VARCHAR"/>
+		<id column="foodtype" property="foodtype" jdbcType="INTEGER"/>
+		<id column="useremail" property="useremail" jdbcType="VARCHAR"/>
+		<id column="orderquantity" property="orderquantity" jdbcType="VARCHAR"/>
+		<id column="orderpayment" property="orderpayment" jdbcType="VARCHAR"/>
+		<id column="orderTime" property="orderTime" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="colum_list">
+		id,foodname,menuid,foodtype,useremail,orderTime,orderquantity,orderpayment
+	</sql>
+	
+	<insert id="Insert" parameterType="com.drdg.android.bean.OrderBean">
+        insert into orders(foodname,menuid,foodtype,useremail,orderquantity,orderpayment,orderTime) 
+        values (
+        #{foodname,jdbcType=VARCHAR},
+        #{menuid,jdbcType=VARCHAR},
+        #{foodtype,jdbcType=INTEGER},
+        #{useremail,jdbcType=VARCHAR},
+        #{orderquantity,jdbcType=VARCHAR},
+        #{orderpayment,jdbcType=VARCHAR},
+        now()
+        )
+    </insert>
+	
+	 <update id="Update" parameterType="com.drdg.android.bean.OrderBean" >
+        update orders set 
+        
+        foodname=#{foodname},
+        menuid=#{menuid},
+        foodtype=#{foodtype}, 
+        useremail=#{useremail},
+        orderTime=now(),
+        #{orderquantity,jdbcType=VARCHAR},
+        #{orderpayment,jdbcType=VARCHAR}
+        where id=#{id}
+    </update>
+	
+    <delete id="Delete" parameterType="com.drdg.android.bean.OrderBean">
+        delete from orders
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <select id="GetListById" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.OrderBean">
+        select *
+        from orders
+        where id= #{id,jdbcType=INTEGER}
+    </select> 
+    
+	<select id="GetList" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.OrderBean">
+  		SELECT * FROM orders
+  		where  useremail=#{useremail,jdbcType=VARCHAR}
+  	</select>
+</mapper>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.foodie.app">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />）
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+
+    <application
+        tools:replace="android:icon, android:label, android:theme, android:name"
+        android:name="com.foodie.app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/app"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.DesignDemo">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="deCE6YbYqeoU0vqd0BhgG5CFpHYXauvE" />
+        <activity android:name="com.foodie.app.Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.foodie.app.Activity.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+
+        <activity android:name=".Activity.UploadActivity"></activity>
+
+        <activity
+            android:name="com.foodie.app.Activity.MainActivity"
+            android:parentActivityName="com.foodie.app.Activity.SplashActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.foodie.app.Activity.SplashActivity"/>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+        <activity
+            android:name="com.foodie.app.Activity.PostActivity"
+            android:label="In dynamic" />
+        <activity
+            android:name="com.foodie.app.Activity.DishInfoActivity"
+            android:label="Details"/>
+        <activity
+            android:name="com.foodie.app.Activity.SettingActivity"
+            android:label="Setting"/>
+        <activity
+            android:name="com.foodie.app.Activity.TabActivity"
+            android:label="Me" />
+        <activity android:name=".Activity.MyFeedBackActivity"></activity>
+        <activity android:name=".Activity.SearchFoodActivity"></activity>
+        <activity
+            android:name="com.foodie.app.Activity.ModifyUserActivity"
+            android:label="Modified data" />
+        <activity android:name=".Activity.Orders"></activity>
+        <activity android:name=".Activity.RestaurantActivity"></activity>
+        <activity android:name=".Activity.FeedBackActivity"></activity>
+        <activity android:name=".Activity.OrdersHistoryActivity"></activity>
+        <activity
+            android:configChanges="orientation|screenSize"
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity" />
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value="com.foodie.app.Activity.SearchResultsActivity" />
+        <activity
+            android:name="com.foodie.app.Activity.SearchResultsActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+    </application>
+
+</manifest>

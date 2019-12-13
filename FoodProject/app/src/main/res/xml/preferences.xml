@@ -1,0 +1,36 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout="@layout/preference_item"
+    android:title="Setting">
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_widget"
+        android:title="Basic Settings">
+        <CheckBoxPreference
+            android:widgetLayout="@layout/switch_layout"
+            android:key="save_flow"
+            android:defaultValue="false"
+            android:layout="@layout/preference_item"
+            android:summary="Images are automatically loaded in wi-fi only"
+            android:title="Provincial flow pattern"/>
+        <CheckBoxPreference
+            android:widgetLayout="@layout/switch_layout"
+            android:key="allow_push"
+            android:defaultValue="true"
+            android:layout="@layout/preference_item"
+            android:summary="The client can receive message notifications"
+            android:title="Allowed to push"/>
+        <Preference
+            android:layout="@layout/preference_item"
+            android:summary="Delete cached articles and images"
+            android:title="clear cache" />
+    </PreferenceCategory>
+
+
+    <Preference
+        android:layout="@layout/preference_item_single"
+        android:title="Sign Out"
+        android:key="logout">
+    </Preference>
+</PreferenceScreen>

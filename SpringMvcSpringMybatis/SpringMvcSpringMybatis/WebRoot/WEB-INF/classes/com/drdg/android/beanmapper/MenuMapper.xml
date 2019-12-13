@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.drdg.android.dao.MenuDao" >
+	<resultMap id="BaseResultMap" type="com.drdg.android.bean.MenuBean" >
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<id column="foodname" property="foodname" jdbcType="VARCHAR"/>
+		<id column="foodprice" property="foodprice" jdbcType="VARCHAR"/>
+		<id column="foodpicture" property="foodpicture" jdbcType="BLOB"/>
+		<id column="foodcalorie" property="foodcalorie" jdbcType="VARCHAR"/>
+		<id column="foodtype" property="foodtype" jdbcType="INTEGER"/>
+		<id column="useremail" property="useremail" jdbcType="VARCHAR"/>
+		<id column="uptime" property="uptime" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="colum_list">
+		id,foodname,foodprice,foodpicture,foodcalorie,foodtype,useremail,uptime
+	</sql>
+	
+	<insert id="Insert" parameterType="com.drdg.android.bean.MenuBean">
+        insert into foodmenu(foodname,foodprice,foodpicture,foodcalorie,foodtype,useremail,uptime) 
+        values (
+        #{foodname,jdbcType=VARCHAR},
+        #{foodprice,jdbcType=VARCHAR},
+        #{foodpicture,jdbcType=BLOB},
+        #{foodcalorie,jdbcType=VARCHAR},
+        #{foodtype,jdbcType=INTEGER},
+        #{useremail,jdbcType=VARCHAR},
+        now()
+        )
+    </insert>
+	
+    <delete id="Delete" parameterType="com.drdg.android.bean.MenuBean">
+        delete from foodmenu
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <select id="GetListById" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.MenuBean">
+        select *
+        from foodmenu
+        where id = #{id,jdbcType=INTEGER}
+    </select> 
+    
+    <update id="Update" parameterType="com.drdg.android.bean.MenuBean" >
+        update foodmenu set 
+        
+        foodname=#{foodname},
+        foodprice=#{foodprice},
+        foodpicture=#{foodpicture}, 
+        foodcalorie=#{foodcalorie},
+        foodtype=#{foodtype},
+        useremail=#{useremail},
+        uptime=now()
+        
+        where id=#{id}
+    </update>
+    <select id="GetListByUser" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.MenuBean">
+  		SELECT * FROM foodmenu
+  		where useremail=#{useremail,jdbcType=VARCHAR}
+  	</select>
+	<select id="GetList" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.MenuBean">
+  		SELECT * FROM foodmenu
+  		where foodtype=#{foodtype,jdbcType=INTEGER}
+  	</select>
+  	
+  	<select id="GetListByName" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.MenuBean">
+  		SELECT * FROM foodmenu
+  		where 1=1
+			<if test="foodname != null and foodname != ''">
+				AND foodname LIKE concat('%',#{foodname},'%')
+			</if>
+  	</select>
+</mapper>

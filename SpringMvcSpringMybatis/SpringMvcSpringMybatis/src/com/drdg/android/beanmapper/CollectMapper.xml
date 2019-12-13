@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.drdg.android.dao.CollectDao" >
+	<resultMap id="BaseResultMap" type="com.drdg.android.bean.CollectBean" >
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<id column="foodname" property="foodname" jdbcType="VARCHAR"/>
+		<id column="menuid" property="menuid" jdbcType="VARCHAR"/>
+		<id column="foodtype" property="foodtype" jdbcType="VARCHAR"/>
+		<id column="useremail" property="useremail" jdbcType="VARCHAR"/>
+		<id column="collectTime" property="collectTime" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<sql id="colum_list">
+		id,foodname,menuid,foodtype,useremail,collectTime
+	</sql>
+	
+	<insert id="Insert" parameterType="com.drdg.android.bean.CollectBean">
+        insert into collect(foodname,menuid,foodtype,useremail,collectTime) 
+        values (
+        #{foodname,jdbcType=VARCHAR},
+        #{menuid,jdbcType=VARCHAR},
+        #{foodtype,jdbcType=VARCHAR},
+        #{useremail,jdbcType=VARCHAR},
+        now()
+        )
+    </insert>
+	
+	 <update id="Update" parameterType="com.drdg.android.bean.CollectBean" >
+        update collect set 
+        
+        foodname=#{foodname},
+        menuid=#{menuid},
+        foodtype=#{foodtype}, 
+        useremail=#{useremail},
+        collectTime=now()
+        
+        where id=#{id}
+    </update>
+	
+    <delete id="Delete" parameterType="com.drdg.android.bean.CollectBean">
+        delete from collect
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <select id="GetListById" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.CollectBean">
+        select *
+        from collect
+        where menuid=#{menuid,jdbcType=VARCHAR} and useremail=#{useremail,jdbcType=VARCHAR}
+    </select> 
+    
+	<select id="GetList" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.CollectBean">
+  		SELECT * FROM collect
+  		where  useremail=#{useremail,jdbcType=VARCHAR}
+  	</select>
+</mapper>

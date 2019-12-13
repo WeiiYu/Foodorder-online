@@ -1,0 +1,1 @@
+These all mapper classes map with the bean classes and SQL language connectg with database, all of the meathod were wrote in these mapper classes

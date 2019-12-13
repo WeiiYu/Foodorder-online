@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.drdg.android.dao.UserDao" >
+	<resultMap id="BaseResultMap" type="com.drdg.android.bean.UserBean" >
+	
+		
+		<id column="username" property="username" jdbcType="VARCHAR"/>
+		<id column="password" property="password" jdbcType="VARCHAR"/>
+		<id column="email" property="email" jdbcType="VARCHAR"/>
+		<id column="type" property="type" jdbcType="INTEGER"/>
+		<id column="address" property="address" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<sql id="colum_list">
+		username,password,email,type,address
+	</sql>
+	
+	<insert id="Insert" parameterType="com.drdg.android.bean.UserBean">
+        insert into user(username,password,email,type,address) 
+        values (
+        #{username,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
+         #{address,jdbcType=INTEGER}
+        )
+    </insert>
+	
+    <delete id="Delete" parameterType="com.drdg.android.bean.UserBean">
+        delete from user
+        where id = #{email,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="GetListByAccount" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.UserBean">
+        select *
+        from user
+        where email = #{email,jdbcType=VARCHAR}
+    </select> 
+    
+    <select id="GetListById" resultMap="BaseResultMap" parameterType="com.drdg.android.bean.UserBean">
+        select *
+        from email
+        where id = #{email,jdbcType=VARCHAR}
+    </select> 
+    <update id="Update" parameterType="com.drdg.android.bean.UserBean" >
+        update user set 
+       
+        username=#{username},
+        password=#{password},
+        email=#{email},
+        type=#{type},
+        address=#{address}
+        
+        where id=#{email}
+    </update>
+    
+	<select id="GetList" resultMap="BaseResultMap">
+  		SELECT * FROM user
+  	</select>
+</mapper>
